@@ -7,8 +7,8 @@ async function bootstrap() {
 
   // Config de Swagger
   const config = new DocumentBuilder()
-    .setTitle('Epayco API Service')
-    .setDescription('Documentación de la API Service de Epayco')
+    .setTitle('Epayco API Core')
+    .setDescription('Documentación de la API Core de Epayco')
     .setVersion('1.0')
     .build();
   const document = SwaggerModule.createDocument(app, config);
