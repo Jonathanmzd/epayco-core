@@ -1,8 +1,9 @@
-import { Injectable, BadRequestException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Client } from './entities/client.entity';
 import { RegisterClientDto } from './dto/register-client.dto';
+import { ClientExistsException } from './exceptions/client-exists.exception';
 
 @Injectable()
 export class ClientService {
@@ -12,12 +13,16 @@ export class ClientService {
   ) {}
 
   async registerClient(dto: RegisterClientDto) {
-    const existing = await this.clientRepo.findOne({
-      where: { document: dto.document },
-    });
+    const { document, email, phone } = dto;
 
-    if (existing) {
-      throw new BadRequestException('Client already exists with this document');
+    if (await this.clientRepo.findOne({ where: { document } })) {
+      throw new ClientExistsException('document');
+    }
+    if (await this.clientRepo.findOne({ where: { email } })) {
+      throw new ClientExistsException('email');
+    }
+    if (await this.clientRepo.findOne({ where: { phone } })) {
+      throw new ClientExistsException('phone');
     }
 
     const newClient = this.clientRepo.create(dto);
