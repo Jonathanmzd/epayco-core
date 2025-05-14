@@ -5,6 +5,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ClientModule } from './modules/client/client.module';
 import { WalletModule } from './modules/wallet/wallet.module';
+import { PaymentModule } from './modules/payment/payment.module';
 
 @Module({
   imports: [
@@ -20,7 +21,8 @@ import { WalletModule } from './modules/wallet/wallet.module';
       synchronize: true, // Synchronize schema (use only in development)
     }),
     ClientModule,
-    WalletModule
+    WalletModule,
+    PaymentModule
   ],
   controllers: [AppController],
   providers: [AppService],
