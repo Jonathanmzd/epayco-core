@@ -33,6 +33,7 @@
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.1",
     "swagger-ui-express": "^5.0.1",
+    "tree-cli": "^0.6.7",
     "typeorm": "^0.3.23"
   },
   "devDependencies": {
