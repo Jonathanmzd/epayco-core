@@ -71,3 +71,63 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](LICENSE).
+
+
+## Tecnologías instaladas
+
+- **Node.js y npm**: Plataforma y gestor de paquetes para JavaScript.
+- **NestJS**: Framework para construir aplicaciones backend en Node.js usando TypeScript.
+- **TypeScript**: Superset de JavaScript que añade tipado estático.
+- **MySQL**: Base de datos relacional utilizada por la aplicación.
+- **TypeORM**: ORM para manejar la base de datos con entidades en TypeScript.
+- **Swagger**: Documentación interactiva de la API (disponible en `/api-docs`).
+- **Jest**: Framework para pruebas unitarias y de integración.
+- **Docker**: (opcional) Para levantar servicios como la base de datos MySQL fácilmente.
+- **ESLint y Prettier**: Herramientas para mantener la calidad y formato del código.
+
+---
+
+## Cómo arrancar el proyecto
+
+1. **Instala las dependencias**
+
+   ```bash
+   npm install
+   ```
+
+2. **Configura las variables de entorno**
+
+   Copia `.env.example` a `.env` y ajusta los valores según tu entorno (por ejemplo, credenciales de MySQL).
+
+3. **Levanta la base de datos MySQL**
+
+   Puedes usar Docker con el archivo `docker-compose.yml`:
+
+   ```bash
+   docker-compose up -d
+   ```
+
+   O usar tu propia instancia de MySQL y asegurarte de que los datos de conexión coincidan con los de `.env`.
+
+4. **Arranca la aplicación en modo desarrollo**
+
+   ```bash
+   npm run start:dev
+   ```
+
+5. **Accede a la documentación de la API**
+
+   Una vez corriendo, abre [http://localhost:3000/api-docs](http://localhost:3000/api-docs) para ver Swagger.
+
+6. **Ejecuta pruebas (opcional)**
+
+   ```bash
+   npm run test
+   ```
+
+---
+
+**Notas:**
+- El backend por defecto corre en el puerto `3000`.
+- Si necesitas cambiar el puerto o la configuración de la base de datos, edita el archivo `.env`.
+- Si tienes problemas con dependencias, asegúrate de tener Node.js y npm actualizados.
