@@ -4,13 +4,14 @@ import { Repository } from 'typeorm';
 import { Client } from './entities/client.entity';
 import { RegisterClientDto } from './dto/register-client.dto';
 import { ClientExistsException } from './exceptions/client-exists.exception';
+import { ClientsNotFoundException } from './exceptions/clients-not-found.exception';
 
 @Injectable()
 export class ClientService {
   constructor(
     @InjectRepository(Client)
     private readonly clientRepo: Repository<Client>,
-  ) {}
+  ) { }
 
   async registerClient(dto: RegisterClientDto) {
     const { document, email, phone } = dto;
@@ -33,4 +34,20 @@ export class ClientService {
       message: 'Client registered successfully',
     };
   }
+
+  async findAll() {
+    const clients = await this.clientRepo.find({
+      order: { id: 'ASC' },
+    });
+
+    if (clients.length === 0) {
+      throw new ClientsNotFoundException();
+    }
+
+    return {
+      success: true,
+      data: clients,
+    };
+  }
+
 }
